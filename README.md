@@ -1,0 +1,2 @@
+# ScriptCreator
+SQL script generator
