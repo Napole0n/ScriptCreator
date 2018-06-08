@@ -1,0 +1,43 @@
+trabalho final
+
+
+
+
+* Framewoek criação Script BD (Tabela simples)
+* Catalogar os padrões utilizados
+* Criar um artigo (Padrão 4C)
+* Suite de teste
+* Programa console (Sem menu)
+* Programa Console (com gui)(1,0)
+
+15/06/18   entrega parcial do projeto
+
+22/06/18   entrega parcial
+
+29/06/2018 entrega parcial
+
+
+
+
+
+Creator{
+
+List<Arguments> l;
+ 
+}
+
+
+
+
+
+(Select extends ISelect)
+
+Objeto
+
+public String select(List<T extends > )
+
+
+Select.select()
+
+
+
