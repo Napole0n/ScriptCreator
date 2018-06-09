@@ -9,6 +9,10 @@ package mg.classes.principal;
  *
  * @author Murilo
  */
-public class TableConstraint extends Constraint {
+public class FieldConstraint extends Constraint {
+    
+    public FieldConstraint(int constCod){
+        super.constCod = constCod;
+    }
     
 }

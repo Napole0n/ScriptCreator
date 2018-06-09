@@ -5,20 +5,17 @@
  */
 package mg.classes.principal;
 
-import java.util.List;
-
 /**
  *
  * @author Murilo
  */
-public class Constraint {
-   
-    int constCod;
+public interface ISQLCreator {
     
-    public int getConstCod(){
-        return constCod;
-    }
-    
+    public String executeSelect();
+    public String executeCreate(Table t);
+    public String executeAlter();
+    public String executeDelete();
+    public String executeDropTable();
     
     
 }

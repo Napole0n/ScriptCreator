@@ -5,20 +5,17 @@
  */
 package mg.classes.principal;
 
-import java.util.List;
-
 /**
  *
  * @author Murilo
  */
-public class Constraint {
-   
-    int constCod;
+public class Testes {
     
-    public int getConstCod(){
-        return constCod;
+    public static void main(String[] args) {
+        
+        System.out.println(TypeCreator.SMALLINT.getTypeValue());
+        
+        
     }
-    
-    
     
 }

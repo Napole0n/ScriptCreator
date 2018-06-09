@@ -11,4 +11,7 @@ package mg.classes.principal;
  */
 public class DataBase {
     
+    private String schemaName;
+    private String path;
+    
 }
