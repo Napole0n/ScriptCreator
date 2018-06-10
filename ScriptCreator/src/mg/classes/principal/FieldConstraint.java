@@ -9,10 +9,14 @@ package mg.classes.principal;
  *
  * @author Murilo
  */
-public class FieldConstraint extends Constraint {
-    
-    public FieldConstraint(int constCod){
-        super.constCod = constCod;
-    }
-    
+public enum FieldConstraint {
+
+    AUTO_INCREMENT,
+    NOT_NULL,
+    UNIQUE,
+    PRIMARY_KEY,
+    FOREIGN_KEY,
+    CHECK,
+    DEFAULT
+
 }

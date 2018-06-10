@@ -6,9 +6,10 @@
 package mg.classes.script;
 
 import mg.classes.principal.Field;
+import mg.classes.principal.FieldConstraint;
 import mg.classes.principal.ISQLCreator;
 import mg.classes.principal.Table;
-import mg.classes.principal.TypeCreator;
+import mg.classes.principal.Type;
 
 /**
  *
@@ -24,39 +25,71 @@ public class ScriptCreator implements ISQLCreator {
     @Override
     public String executeCreate(Table t) {
 
-        String part_1;
+        String sql = "CREATE TABLE " + t.getTableName() + "(";
 
-        int fieldCount = t.getFieldList().size() - 1;
+        for (int i = 0; i < t.getFieldList().size(); i++) {
 
-        String sql = "CREATE TABLE " + t.getTableName() + "( ";
+            Field f = t.getFieldList().get(i);
 
-        for (Field f : t.getFieldList()) {
+            if (validateField(f)) {
+                if (f.isResized) {
+                    sql = sql + f.getFieldName() + " " + f.getFieldType().toString() + "(" + f.getFieldSize() + ")";
 
-            sql = sql + f.getFieldName() + " " + f.getFieldType();
+                    if (f.hasConstraint) {
+                        sql = sql + " ";
+                        for (FieldConstraint fc : f.getConstList()) {
+                            String constString = fc.toString();
+                            sql = sql + constString.replace("_", " ") + " ";
+                        }
+                    }
 
+                    if (!(i == t.getFieldList().size() - 1)) {
+                        sql = sql + ",";
+                    }
+
+                } else {
+                    sql = sql + f.getFieldName() + " " + f.getFieldType();
+
+                    if (f.hasConstraint) {
+                        sql = sql + " ";
+                        for (FieldConstraint fc : f.getConstList()) {
+                            String constString = fc.toString();
+                            sql = sql + constString.replace("_", " ") + " ";
+                        }
+                    }
+
+                    if (!(i == t.getFieldList().size() - 1)) {
+                        sql = sql + ",";
+                    }
+                }
+
+            }
         }
+        sql = sql + ");";
+
         return sql;
     }
 
     public boolean validateField(Field f) {
         boolean flag = true;
-        if (f.getFieldType() == 0) {
-            System.err.println("Tipo do Campo não foi definido!");
-        } else if (f.getFieldName().equals("")) {
+        if (f.getFieldName().equals("")) {
             System.err.println("Nome do Campo não definido!");
-        } else if (f.getFieldType() == TypeCreator.VARCHAR.getTypeValue()
-                || f.getFieldType() == TypeCreator.CHAR.getTypeValue()
-                || f.getFieldType() == TypeCreator.TINYINT.getTypeValue()
-                || f.getFieldType() == TypeCreator.SMALLINT.getTypeValue()
-                || f.getFieldType() == TypeCreator.MEDIUMINT.getTypeValue()
-                || f.getFieldType() == TypeCreator.INT.getTypeValue()
-                || f.getFieldType() == TypeCreator.BIGINT.getTypeValue()
-                || f.getFieldType() == TypeCreator.FLOAT.getTypeValue()
-                || f.getFieldType() == TypeCreator.DOUBLE.getTypeValue()
-                || f.getFieldType() == TypeCreator.DECIMAL.getTypeValue()) {
+        } else if (f.getFieldType() == Type.VARCHAR
+                || f.getFieldType() == Type.CHAR
+                || f.getFieldType() == Type.TINYINT
+                || f.getFieldType() == Type.SMALLINT
+                || f.getFieldType() == Type.MEDIUMINT
+                || f.getFieldType() == Type.INT
+                || f.getFieldType() == Type.BIGINT
+                || f.getFieldType() == Type.FLOAT
+                || f.getFieldType() == Type.DOUBLE
+                || f.getFieldType() == Type.DECIMAL) {
 
             if (f.getFieldSize() == 0) {
-                System.err.println("Tamanho do campo não definido");
+                f.isResized = true;
+                f.setFieldSize(10);
+            } else {
+                flag = true;
             }
 
         } else {

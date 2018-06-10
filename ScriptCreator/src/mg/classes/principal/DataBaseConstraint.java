@@ -9,6 +9,6 @@ package mg.classes.principal;
  *
  * @author Murilo
  */
-public class DataBaseConstraint extends Constraint{
+public class DataBaseConstraint{
     
 }

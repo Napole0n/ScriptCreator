@@ -5,6 +5,7 @@
  */
 package mg.classes.principal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,12 +15,11 @@ import java.util.List;
 public class Table {
 
     private String tableName;
-    private List<Field> fieldList;
+    private List<Field> fieldList = new ArrayList<Field>();
 
     public Table(String tableName) {
         this.tableName = tableName;
     }
-
 
     public Table(String tableName, List<Field> fields) {
         this.tableName = tableName;
@@ -34,14 +34,16 @@ public class Table {
         return false;
     }
 
-
     public boolean existsField(Field field) {
         boolean flag = false;
-        for (Field f : fieldList) {
-            if (f.equals(field)) {
-                flag = true;
+        if (!(this.fieldList.isEmpty())) {
+            for (Field f : fieldList) {
+                if (f.equals(field)) {
+                    flag = true;
+                }
             }
         }
+
         return flag;
     }
 
@@ -60,7 +62,5 @@ public class Table {
     public void setFieldList(List<Field> fieldList) {
         this.fieldList = fieldList;
     }
-
-
 
 }

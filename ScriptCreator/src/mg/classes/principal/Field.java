@@ -5,6 +5,7 @@
  */
 package mg.classes.principal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,12 +15,28 @@ import java.util.List;
 public class Field {
 
     private String fieldName = "";
-    private int fieldType = 0;
+    private Type fieldType;
     private int fieldSize = 0;  //Opcional
     private List<FieldConstraint> constList; //Opcional
 
-    boolean hasConstraint = false;
-    boolean isResized = false;
+    public boolean hasConstraint = false;
+    public boolean isResized = false;
+
+    public Field() {
+    }
+
+    public Field(String name, Type type) {
+        this.fieldName = name;
+        this.fieldType = type;
+    }
+
+    public Field(String name, Type type, int size) {
+        this.fieldName = name;
+        this.fieldSize = size;
+        this.fieldType = type;
+        this.isResized = true;
+
+    }
 
     public String getFieldName() {
         return fieldName;
@@ -27,6 +44,9 @@ public class Field {
 
     public boolean insertConstraint(FieldConstraint c) {
         if (!existsConstraints(c)) {
+            if(constList == null){
+                constList = new ArrayList<>();
+            }
             constList.add(c);
             if (!hasConstraint) {
                 hasConstraint = true;             //seta hasContraint
@@ -39,10 +59,12 @@ public class Field {
 
     public boolean existsConstraints(FieldConstraint c) {
         boolean flag = false;
-        for (FieldConstraint c2 : constList) {
-            if (c2.equals(c)) {
-                flag = true;
-                break;
+        if (constList != null) {
+            for (FieldConstraint c2 : constList) {
+                if (c2.equals(c)) {
+                    flag = true;
+                    break;
+                }
             }
         }
         return flag;
@@ -52,11 +74,11 @@ public class Field {
         this.fieldName = fieldName;
     }
 
-    public int getFieldType() {
+    public Type getFieldType() {
         return fieldType;
     }
 
-    public void setFieldType(int fieldType) {
+    public void setFieldType(Type fieldType) {
         this.fieldType = fieldType;
     }
 
@@ -78,9 +100,5 @@ public class Field {
     public void setConstList(List<FieldConstraint> constList) {
         this.constList = constList;
     }
-
-   
-
-    
 
 }
