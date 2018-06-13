@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mg.tests;
+
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -17,7 +17,7 @@ public class TestRunner {
     
     public static void main(String[] args) {
         
-        Result result = JUnitCore.runClasses(ScriptTestCreate.class);
+        Result result = JUnitCore.runClasses(TestSuite.class);
         
         for(Failure failure : result.getFailures()){
             System.out.println(failure.toString());
