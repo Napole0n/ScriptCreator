@@ -36,6 +36,10 @@ public class DataBase {
         this.password = password;
         url = url+databaseName;
     }
+    
+    public DataBase(String name){
+        this.databaseName = name;
+    }
 
     /**
      *

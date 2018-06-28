@@ -10,5 +10,5 @@ package mg.classes.principal;
  * @author Murilo
  */
 public class DataBaseConstraint{
-    
+
 }
