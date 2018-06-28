@@ -5,6 +5,7 @@
  */
 package mg.classes.principal;
 
+import mg.classes.database.DataBase;
 import mg.classes.script.ScriptCreator;
 
 /**
@@ -18,6 +19,8 @@ public class Testes {
      Field f1 = new Field("ID",Type.INT);   
      f1.insertConstraint(FieldConstraint.AUTO_INCREMENT);
      f1.insertConstraint(FieldConstraint.NOT_NULL);
+     f1.insertConstraint(FieldConstraint.PRIMARY_KEY);
+    
      
      Field f2 = new Field("Nome",Type.VARCHAR,45);
      Field f3 = new Field("Idade",Type.INT);
@@ -29,10 +32,11 @@ public class Testes {
      
      
      ScriptCreator s = new ScriptCreator();
-     
-     
-        System.out.println(s.executeCreate(tabela));
-     
+     DataBase db = new DataBase("novo","root","");
+     System.out.println(s.executeCreate(tabela));
+
+        db.executeScrip(s.executeCreate(tabela));
+        
         
     }
     

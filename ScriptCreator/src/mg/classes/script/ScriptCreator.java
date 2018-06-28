@@ -38,8 +38,13 @@ public class ScriptCreator implements ISQLCreator {
                     if (f.hasConstraint) {
                         sql = sql + " ";
                         for (FieldConstraint fc : f.getConstList()) {
+                            if(fc == FieldConstraint.AUTO_INCREMENT){
+                                String constString = "AUTO_INCREMENT ";
+                                sql = sql + constString;
+                            }else{
                             String constString = fc.toString();
                             sql = sql + constString.replace("_", " ") + " ";
+                            }
                         }
                     }
 
