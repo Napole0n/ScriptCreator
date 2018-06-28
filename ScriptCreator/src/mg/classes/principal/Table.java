@@ -26,6 +26,11 @@ public class Table {
         this.fieldList = fields;
     }
 
+    /**
+     *
+     * @param f field para ser inserido na tabela
+     * @return true se for inserido com sucesso, false se houver algum erro
+     */
     public boolean insertField(Field f) {
         if (!existsField(f)) {
             fieldList.add(f);
@@ -34,7 +39,8 @@ public class Table {
         return false;
     }
 
-    public boolean existsField(Field field) {
+   
+    private boolean existsField(Field field) {
         boolean flag = false;
         if (!(this.fieldList.isEmpty())) {
             for (Field f : fieldList) {

@@ -6,6 +6,13 @@ import java.sql.SQLException;
 
 public class Conexao {
 
+    /**
+     *
+     * @param url a url da instancia MySQL
+     * @param user usuario para login 
+     * @param pass senha para login 
+     * @return a Connection
+     */
     public static Connection conectar(String url, String user, String pass) {
     	try {
     		Class.forName("com.mysql.jdbc.Driver");

@@ -24,6 +24,12 @@ public class DataBase {
     private String username = "root";
     private String password = "";
 
+    /**
+     *
+     * @param databaseName nome do schema
+     * @param username usuario para login
+     * @param password senha para login
+     */
     public DataBase(String databaseName, String username, String password) {
         this.databaseName = databaseName;
         this.username = username;
@@ -31,8 +37,12 @@ public class DataBase {
         url = url+databaseName;
     }
 
-    
-    public boolean executeScrip(String script){
+    /**
+     *
+     * @param script O Script no formato SQL para ser executado
+     * @return true se executar com sucesso, caso contrario, false
+     */
+    public boolean executeScript(String script){
         try {
             java.sql.Connection conn = Conexao.conectar(url,username,password);
             PreparedStatement ps = conn.prepareStatement(script);
@@ -45,13 +55,6 @@ public class DataBase {
             return false;
         }
     }
-    
-        
-        
-        
-
-
-
 
     public String getUrl() {
         return url;

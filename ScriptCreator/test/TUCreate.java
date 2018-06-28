@@ -63,7 +63,7 @@ public class TUCreate {
         ScriptCreator s = new ScriptCreator();
 
         String strExpected = "CREATE TABLE Pessoa(ID INT(10) AUTO INCREMENT NOT NULL ,Nome VARCHAR(45),Idade INT(10));";
-        String strObtained = s.executeCreate(tabela);
+        String strObtained = s.generateCreate(tabela);
 
 
         assertEquals(strExpected, strObtained);

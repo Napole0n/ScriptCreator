@@ -33,9 +33,9 @@ public class Testes {
      
      ScriptCreator s = new ScriptCreator();
      DataBase db = new DataBase("novo","root","");
-     System.out.println(s.executeCreate(tabela));
+     System.out.println(s.generateCreate(tabela));
 
-        db.executeScrip(s.executeCreate(tabela));
+        db.executeScript(s.generateCreate(tabela));
         
         
     }

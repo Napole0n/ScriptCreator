@@ -20,16 +20,31 @@ public class Field {
     private List<FieldConstraint> constList; //Opcional
 
     public boolean hasConstraint = false;
+
+    /**
+     * flag para controlar se o Teve ou não seu tamanho alterado
+     */
     public boolean isResized = false;
 
     public Field() {
     }
 
+    /**
+     *
+     * @param name Nome para o Field
+     * @param type O Tipo do Field
+     */
     public Field(String name, Type type) {
         this.fieldName = name;
         this.fieldType = type;
     }
 
+    /**
+     *
+     * @param name Nome para o Field
+     * @param type O Tipo do Field
+     * @param size O Tamanho do Field
+     */
     public Field(String name, Type type, int size) {
         this.fieldName = name;
         this.fieldSize = size;
@@ -42,9 +57,14 @@ public class Field {
         return fieldName;
     }
 
+    /**
+     *
+     * @param c FieldConstraint para inserir no Field
+     * @return true se for inserida com sucesso, caso contrario, false
+     */
     public boolean insertConstraint(FieldConstraint c) {
         if (!existsConstraints(c)) {
-            if(constList == null){
+            if (constList == null) {
                 constList = new ArrayList<>();
             }
             constList.add(c);
@@ -57,7 +77,7 @@ public class Field {
         return false;
     }
 
-    public boolean existsConstraints(FieldConstraint c) {
+    private boolean existsConstraints(FieldConstraint c) {
         boolean flag = false;
         if (constList != null) {
             for (FieldConstraint c2 : constList) {

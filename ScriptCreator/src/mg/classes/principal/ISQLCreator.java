@@ -11,11 +11,9 @@ package mg.classes.principal;
  */
 public interface ISQLCreator {
     
-    public String executeSelect();
-    public String executeCreate(Table t);
-    public String executeAlter();
-    public String executeDelete();
-    public String executeDropTable();
+    public String generateSelect();
+    public String generateCreate(Table t);
+    public String generateDropTable(Table t);
     
     
 }

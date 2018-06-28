@@ -17,13 +17,22 @@ import mg.classes.principal.Type;
  */
 public class ScriptCreator implements ISQLCreator {
 
+    /**
+     *
+     * @return Retorna o Script de um SELECT em formato SQL
+     */
     @Override
-    public String executeSelect() {
+    public String generateSelect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param t Tabela a ser criado o Script
+     * @return O Script em formato SQL
+     */
     @Override
-    public String executeCreate(Table t) {
+    public String generateCreate(Table t) {
 
         String sql = "CREATE TABLE " + t.getTableName() + "(";
 
@@ -38,12 +47,12 @@ public class ScriptCreator implements ISQLCreator {
                     if (f.hasConstraint) {
                         sql = sql + " ";
                         for (FieldConstraint fc : f.getConstList()) {
-                            if(fc == FieldConstraint.AUTO_INCREMENT){
+                            if (fc == FieldConstraint.AUTO_INCREMENT) {
                                 String constString = "AUTO_INCREMENT ";
                                 sql = sql + constString;
-                            }else{
-                            String constString = fc.toString();
-                            sql = sql + constString.replace("_", " ") + " ";
+                            } else {
+                                String constString = fc.toString();
+                                sql = sql + constString.replace("_", " ") + " ";
                             }
                         }
                     }
@@ -75,6 +84,11 @@ public class ScriptCreator implements ISQLCreator {
         return sql;
     }
 
+    /**
+     *
+     * @param f Campo a ser validado
+     * @return true se o campo for valido de acordo com a sintaxe SQL
+     */
     public boolean validateField(Field f) {
         boolean flag = true;
         if (f.getFieldName().equals("")) {
@@ -104,19 +118,15 @@ public class ScriptCreator implements ISQLCreator {
 
     }
 
+    /**
+     *
+     * @param t A tabela a ser dropada
+     * @return O Script de um DROP TABLE em formato SQL
+     */
     @Override
-    public String executeAlter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String generateDropTable(Table t) {  
+        return "DROP TABLE " + t.getTableName()+";";
     }
 
-    @Override
-    public String executeDelete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String executeDropTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
